@@ -3,276 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aidan White - Finance & AI</title>
+    <title>Aidan White — Finance & AI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; min-height: 100%; }
 
-        html, body {
-            width: 100%;
-            height: 100%;
+        :root {
+            --paper: #e7dcc6;       /* warm cream-beige ground */
+            --card: #f6efe0;        /* cream card */
+            --tint: #efe6d4;        /* soft beige fill */
+            --tint-deep: #e8ddc7;
+            --ink: #211f1a;
+            --ink-soft: #5b564b;
+            --faint: #948d7c;
+            --line: #ddd2bb;
+            --line-strong: #c9bda2;
+            --accent: #7c2f2a;      /* oxblood accent */
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
-            background: linear-gradient(135deg, #0F1419 0%, #1a1f2e 100%);
-            color: #e0e6ed;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            padding: 20px;
+            min-height: 100dvh;
+            padding: 28px 16px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        .container {
+        /* faint paper grain — warmth, not a glow */
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 0;
+            mix-blend-mode: multiply;
+        }
+
+        .card {
+            position: relative;
+            z-index: 1;
             width: 100%;
             max-width: 420px;
-            background: rgba(20, 25, 35, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(74, 158, 255, 0.15);
-            border-radius: 16px;
-            padding: 40px 32px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: clamp(28px, 7vw, 40px) clamp(24px, 6.5vw, 38px) clamp(26px, 6vw, 34px);
+            box-shadow: 0 1px 2px rgba(33,31,26,0.05), 0 26px 48px -34px rgba(33,31,26,0.5);
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 36px;
+        /* masthead */
+        .top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--line);
+            margin-bottom: 26px;
+        }
+        .kicker {
+            font-size: 10.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.22em;
+            color: var(--faint);
+        }
+        .monogram {
+            display: grid; place-items: center;
+            width: 36px; height: 36px;
+            background: var(--tint);
+            border: 1px solid var(--line-strong);
+            border-radius: 50%;
+            font-family: 'Fraunces', serif;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.01em;
+            color: var(--ink);
         }
 
         .name {
-            font-size: 28px;
-            font-weight: 600;
-            letter-spacing: -0.5px;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #ffffff 0%, #e0e6ed 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .title {
-            font-size: 14px;
-            color: #4a9eff;
+            font-family: 'Fraunces', serif;
             font-weight: 500;
-            margin-bottom: 4px;
-            letter-spacing: 0.3px;
+            font-size: clamp(33px, 9vw, 41px);
+            line-height: 1.0;
+            letter-spacing: -0.015em;
+            color: var(--ink);
+            margin-bottom: 16px;
         }
-
-        .subtitle {
+        .accent-rule {
+            width: 42px; height: 2px;
+            background: var(--accent);
+            margin-bottom: 16px;
+        }
+        .role {
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--ink-soft);
+        }
+        .place {
+            display: flex; align-items: center; gap: 9px;
             font-size: 13px;
-            color: #a8b2c1;
-            font-weight: 400;
-            line-height: 1.5;
+            color: var(--ink-soft);
+            margin-top: 14px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid var(--line);
         }
+        .place svg { width: 14px; height: 14px; color: var(--accent); flex: none; }
 
-        .divider {
-            width: 32px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, #4a9eff, transparent);
-            margin: 20px auto;
-        }
-
+        /* actions */
         .actions {
             display: grid;
-            gap: 12px;
-            margin-bottom: 32px;
-        }
-
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            grid-template-columns: 1fr 1fr;
             gap: 10px;
-            padding: 14px 16px;
-            background: rgba(74, 158, 255, 0.1);
-            border: 1px solid rgba(74, 158, 255, 0.25);
-            border-radius: 10px;
-            color: #e0e6ed;
+            margin: 26px 0;
+        }
+        .btn {
+            display: flex; align-items: center; gap: 10px;
+            min-height: 50px;
+            padding: 13px 16px;
+            background: var(--tint);
+            border: 1px solid var(--line-strong);
+            border-radius: 5px;
+            color: var(--ink);
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border-radius: 10px;
+            letter-spacing: -0.005em;
+            transition: background 0.22s ease, color 0.22s ease, border-color 0.22s ease;
         }
+        .btn svg { width: 17px; height: 17px; flex: none; color: var(--ink-soft); transition: color 0.22s ease; }
+        .btn:hover { background: var(--ink); border-color: var(--ink); color: var(--card); }
+        .btn:hover svg { color: var(--card); }
+        .btn:active { background: var(--ink); color: var(--card); }
+        .btn:active svg { color: var(--card); }
 
-        .action-btn:hover {
-            background: rgba(74, 158, 255, 0.2);
-            border-color: rgba(74, 158, 255, 0.4);
-            transform: translateY(-2px);
+        /* ledger */
+        .ledger { margin-bottom: 26px; }
+        .row {
+            display: flex; align-items: baseline; gap: 16px;
+            padding: 15px 0;
+            border-top: 1px solid var(--line);
+            text-decoration: none;
+            color: var(--ink);
         }
-
-        .action-btn:active {
-            transform: translateY(0);
-        }
-
-        .action-icon {
-            font-size: 16px;
-            opacity: 0.8;
-        }
-
-        .linkedin-btn {
-            background: rgba(0, 119, 181, 0.15);
-            border: 1px solid rgba(0, 119, 181, 0.3);
-        }
-
-        .linkedin-btn:hover {
-            background: rgba(0, 119, 181, 0.25);
-            border-color: rgba(0, 119, 181, 0.5);
-        }
-
-        .info-section {
-            border-top: 1px solid rgba(74, 158, 255, 0.1);
-            padding-top: 24px;
-        }
-
-        .info-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 16px;
-            font-size: 13px;
-        }
-
-        .info-row:last-child {
-            margin-bottom: 0;
-        }
-
-        .info-icon {
-            color: #4a9eff;
+        .ledger .row:last-child { border-bottom: 1px solid var(--line); }
+        .row .k {
+            flex: none; width: 56px;
+            font-size: 10px;
             font-weight: 600;
-            min-width: 16px;
-            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--faint);
         }
-
-        .info-content {
-            color: #a8b2c1;
-            word-break: break-word;
-            line-height: 1.4;
-        }
-
-        .info-content a {
-            color: #4a9eff;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .info-content a:hover {
-            color: #5fa7ff;
-        }
-
-        .divider-section {
-            border-top: 1px solid rgba(74, 158, 255, 0.1);
-            margin-top: 24px;
-            padding-top: 24px;
-        }
-
-        .exchange-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 14px 16px;
-            background: linear-gradient(135deg, rgba(74, 158, 255, 0.2), rgba(74, 158, 255, 0.1));
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            border-radius: 10px;
-            color: #e0e6ed;
-            text-decoration: none;
-            font-size: 14px;
+        .row .v {
+            font-size: 14.5px;
             font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
+            color: var(--ink);
+            word-break: break-word;
+            transition: color 0.2s ease;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 1px;
+        }
+        a.row:hover .v { color: var(--accent); border-bottom-color: var(--accent); }
+
+        /* primary CTA */
+        .cta {
+            display: flex; align-items: center; justify-content: center; gap: 12px;
             width: 100%;
+            min-height: 56px;
+            padding: 17px;
+            background: var(--ink);
+            color: var(--card);
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 13.5px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: background 0.22s ease;
+        }
+        .cta svg { width: 16px; height: 16px; transition: transform 0.22s ease; }
+        .cta:hover, .cta:active { background: var(--accent); }
+        .cta:hover svg { transform: translateX(4px); }
+
+        .foot {
+            margin-top: 22px;
             text-align: center;
+            font-size: 10px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--faint);
         }
 
-        .exchange-button:hover {
-            background: linear-gradient(135deg, rgba(74, 158, 255, 0.3), rgba(74, 158, 255, 0.2));
-            border-color: rgba(74, 158, 255, 0.5);
-            transform: translateY(-2px);
+        @media (max-width: 360px) {
+            .actions { grid-template-columns: 1fr; }
+            .row .k { width: 50px; }
         }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 32px 24px;
-                border-radius: 12px;
-            }
-
-            .name {
-                font-size: 24px;
-            }
-
-            .action-btn {
-                padding: 12px 14px;
-                font-size: 13px;
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
-            .action-btn {
-                transition: none;
-            }
-
-            .action-btn:hover {
-                transform: none;
-            }
+            * { transition: none !important; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="name">Aidan White</div>
-            <div class="title">Finance Major</div>
-            <div class="subtitle">minoring in AI Applications</div>
-            <div class="divider"></div>
-            <div class="subtitle">FAU • Boca Raton, FL</div>
+    <div class="card">
+        <div class="top">
+            <span class="kicker">Digital Card</span>
+            <span class="monogram">AW</span>
+        </div>
+
+        <h1 class="name">Aidan White</h1>
+        <div class="accent-rule"></div>
+        <div class="role">Finance &nbsp;·&nbsp; AI Applications</div>
+
+        <div class="place">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Florida Atlantic University — Boca Raton, FL
         </div>
 
         <div class="actions">
-            <a href="tel:+19412240986" class="action-btn">
-                <span class="action-icon">📞</span>
-                <span>Call</span>
+            <a href="tel:+19412240986" class="btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call
             </a>
-            <a href="mailto:whitea2025@fau.edu" class="action-btn">
-                <span class="action-icon">✉️</span>
-                <span>Email</span>
+            <a href="mailto:whitea2025@fau.edu" class="btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+                Email
             </a>
-            <a href="sms:+19412240986" class="action-btn">
-                <span class="action-icon">💬</span>
-                <span>Text</span>
+            <a href="sms:+19412240986" class="btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                Text
             </a>
-            <a href="https://www.linkedin.com/in/aidan-white1/" class="action-btn linkedin-btn" target="_blank" rel="noopener">
-                <span class="action-icon">in</span>
-                <span>LinkedIn</span>
+            <a href="https://www.linkedin.com/in/aidan-white1/" class="btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.55V9h3.57zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/></svg>
+                LinkedIn
             </a>
         </div>
 
-        <div class="info-section">
-            <div class="info-row">
-                <div class="info-icon">📧</div>
-                <div class="info-content"><a href="mailto:whitea2025@fau.edu">whitea2025@fau.edu</a></div>
-            </div>
-            <div class="info-row">
-                <div class="info-icon">📱</div>
-                <div class="info-content"><a href="tel:+19412240986">941-224-0986</a></div>
-            </div>
-            <div class="info-row">
-                <div class="info-icon">🔗</div>
-                <div class="info-content"><a href="https://www.linkedin.com/in/aidan-white1/" target="_blank">LinkedIn Profile</a></div>
-            </div>
-        </div>
-
-        <div class="divider-section">
-            <a href="https://aidanw0700-afk.github.io/aidan-card/contact/" class="exchange-button">
-                <span>Share Your Contact Info</span>
+        <div class="ledger">
+            <a class="row" href="mailto:whitea2025@fau.edu">
+                <span class="k">Email</span>
+                <span class="v">whitea2025@fau.edu</span>
+            </a>
+            <a class="row" href="tel:+19412240986">
+                <span class="k">Phone</span>
+                <span class="v">941-224-0986</span>
+            </a>
+            <a class="row" href="https://www.linkedin.com/in/aidan-white1/" target="_blank" rel="noopener">
+                <span class="k">Social</span>
+                <span class="v">LinkedIn Profile</span>
             </a>
         </div>
+
+        <a href="https://aidanw0700-afk.github.io/aidan-card/contact/" class="cta">
+            Share Your Contact Info
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+
+        <div class="foot">Tap to save</div>
     </div>
 </body>
 </html>
